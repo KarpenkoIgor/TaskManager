@@ -14,6 +14,7 @@ namespace MyTaskManager.Projects
         public string ProjectDescription { get; set; }
         public DateTime DeadLine { get; set; }
 
+
         public Project(
             Guid id,
             string name,

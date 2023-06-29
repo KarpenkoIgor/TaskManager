@@ -13,6 +13,5 @@ namespace MyTaskManager.Tasks
         public DateTime CreationTime { get; set; }
         public Guid TaskId { get; set; }
         public Guid UserId { get; set; }
-
     }
 }
