@@ -15,7 +15,6 @@ namespace MyTaskManager.Projects
         
         public ProjectManager(IProjectRepository projectRepository)
         {
-
             _projectRepository = projectRepository;
         }
 

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyTaskManager.Projects;
+using MyTaskManager.ProjectUsers;
 using MyTaskManager.Tasks;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
@@ -30,6 +31,7 @@ public class MyTaskManagerDbContext :
     public DbSet<Project> Projects { get; set; }
     public DbSet<Comment> Comments { get; set; }
     public DbSet<Task> Tasks { get; set; }
+    public DbSet<ProjectUser>  ProjectUsers { get; set; }
 
     #region Entities from the modules
 
@@ -80,6 +82,12 @@ public class MyTaskManagerDbContext :
         builder.ConfigureFeatureManagement();
         builder.ConfigureTenantManagement();
 
+
+        builder.Entity<ProjectUser>(b => 
+        {
+            b.ToTable(MyTaskManagerConsts.DbTablePrefix + "ProjectUsers", MyTaskManagerConsts.DbSchema);
+            b.ConfigureByConvention();
+        });
         builder.Entity<Task>(b =>
         {
             b.ToTable(MyTaskManagerConsts.DbTablePrefix + "Tasks", MyTaskManagerConsts.DbSchema);
@@ -92,10 +100,7 @@ public class MyTaskManagerDbContext :
             b.Property(t => t.Description)
                 .HasMaxLength(1000);
 
-            b.Property(t => t.ProjectId)
-                .IsRequired();
-
-            b.Property(t => t.AssingnedUserId)
+            b.Property(t => t.ProjectUserId)
                 .IsRequired();
 
             b.Property(t => t.DeadLine)
@@ -103,16 +108,6 @@ public class MyTaskManagerDbContext :
 
             b.Property(t => t.IsClosed)
                 .IsRequired();
-
-            b.HasOne<IdentityUser>()
-                .WithMany()
-                .HasForeignKey(t => t.AssingnedUserId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            b.HasOne<Project>()
-                .WithMany()
-                .HasForeignKey(t => t.ProjectId)
-                .OnDelete(DeleteBehavior.Cascade);
         });
 
         builder.Entity<Comment>(b =>

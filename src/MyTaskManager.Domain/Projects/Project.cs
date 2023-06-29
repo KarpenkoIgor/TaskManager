@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Volo.Abp.Domain.Entities.Auditing;
 using Volo.Abp;
+using MyTaskManager.Tasks;
+using System.Collections.ObjectModel;
 
 namespace MyTaskManager.Projects
 {
@@ -13,7 +15,6 @@ namespace MyTaskManager.Projects
         public string ProjectName { get; set; }
         public string ProjectDescription { get; set; }
         public DateTime DeadLine { get; set; }
-
 
         public Project(
             Guid id,

@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyTaskManager.Projects
 {
-
-    public class ProjectUser
+    internal class EfCoreProjectUserRepository
     {
-
-
     }
 }

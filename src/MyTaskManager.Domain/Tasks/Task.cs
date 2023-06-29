@@ -13,24 +13,21 @@ namespace MyTaskManager.Tasks
     {
         public string Name { get; set; }
         public string Description { get; set; }
-        public Guid ProjectId { get; set; }
-        public Guid AssingnedUserId { get; set; }
+        public Guid ProjectUserId { get; set; }
         public DateTime DeadLine { get; set; }
         public bool IsClosed { get; set; }
         public ICollection<Comment> Comments { get; set; }
         public Task(
             Guid id,
             string name,
-            Guid projectId,
-            Guid assignedUserId,
+            Guid projectUserId,
             DateTime deadLine,
             string description = null
             ) : base(id)
         {
             Name = Check.NotNullOrWhiteSpace(name, nameof(name));
             Description = description;
-            AssingnedUserId = assignedUserId;
-            ProjectId = projectId;
+            ProjectUserId = projectUserId;
             DeadLine = deadLine;
             IsClosed = false;
             Comments = new Collection<Comment>();
