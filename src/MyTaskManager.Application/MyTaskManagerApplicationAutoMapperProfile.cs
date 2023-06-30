@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MyTaskManager.Projects;
+using MyTaskManager.ProjectUsers;
 
 namespace MyTaskManager;
 
@@ -12,5 +13,7 @@ public class MyTaskManagerApplicationAutoMapperProfile : Profile
          * into multiple profile classes for a better organization. */
 
         CreateMap<Project, ProjectDto>();
+        CreateMap<ProjectUser, ProjectUserDto>();
+
     }
 }
