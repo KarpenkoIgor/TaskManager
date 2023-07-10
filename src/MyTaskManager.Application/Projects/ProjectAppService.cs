@@ -31,9 +31,15 @@ namespace MyTaskManager.Projects
             return ObjectMapper.Map<Project, ProjectDto>(project);
         }
 
+        public virtual async Task<PagedResultDto<ProjectDto>> GetListAsync(PagedAndSortedResultRequestDto input)
+        {
+            var project = await _projectManager.GetListProjects();
+            var count = await _projectManager.GetCountAsync();
+            return new PagedResultDto<ProjectDto>(
+                count, 
+                ObjectMapper.Map<List<Project>, List<ProjectDto>>(project)
+                ); 
+        }
+
     }
-
-
-
-
 }

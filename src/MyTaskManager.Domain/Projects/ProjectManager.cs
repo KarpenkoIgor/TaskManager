@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Scriban.Runtime.Accessors;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,6 +33,16 @@ namespace MyTaskManager.Projects
                 projectDescription);
 
             return await _projectRepository.InsertAsync(project);
+        }
+
+        public async Task<List<Project>> GetListProjects() 
+        {
+            return await _projectRepository.GetListAsync();
+        }
+        
+        public async Task<long> GetCountAsync()
+        {
+            return await _projectRepository.GetCountAsync();
         }
 
     }
