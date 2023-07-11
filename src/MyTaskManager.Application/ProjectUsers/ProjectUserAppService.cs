@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Volo.Abp;
+using Volo.Abp.Application.Dtos;
+using Volo.Abp.ObjectMapping;
 
 namespace MyTaskManager.ProjectUsers
 {
@@ -18,7 +20,7 @@ namespace MyTaskManager.ProjectUsers
             _projectUserManager = projectUserManager;
         }
 
-        public virtual async Task<ProjectUserDto> CreateAsync(ProjectUserCreateDto input)
+        public virtual async Task<ProjectUserDto> CreateAsync(ProjectUserCreateUpdateDto input)
         {
 
             var project = await _projectUserManager.CreateAsync(
@@ -28,6 +30,33 @@ namespace MyTaskManager.ProjectUsers
 
 
             return ObjectMapper.Map<ProjectUser, ProjectUserDto>(project);
+        }
+        public virtual async Task<PagedResultDto<ProjectUserDto>> GetListAsync(PagedAndSortedResultRequestDto input)
+        {
+            var project = await _projectUserManager.GetListAsync();
+            var count = await _projectUserManager.GetCountAsync();
+            return new PagedResultDto<ProjectUserDto>(
+                count,
+                ObjectMapper.Map<List<ProjectUser>, List<ProjectUserDto>>(project)
+                );
+        }
+
+        public virtual async Task<ProjectUserDto> GetAsync(Guid id)
+        {
+            return ObjectMapper.Map<ProjectUser, ProjectUserDto>(
+                await _projectUserManager.GetAsync(id)
+                );            
+        }
+
+        public virtual async Task UpdateAsync(Guid id, ProjectUserCreateUpdateDto input)
+        {
+            var project = await _projectUserManager.GetAsync(id);
+            ObjectMapper.Map(input, project);
+        }
+
+        public virtual async Task DeleteAsync(Guid id)
+        {
+            await _projectUserManager.DeleteAsync(id);
         }
     }
 }

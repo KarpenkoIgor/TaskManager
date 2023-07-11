@@ -35,7 +35,7 @@ namespace MyTaskManager.Projects
             return await _projectRepository.InsertAsync(project);
         }
 
-        public async Task<List<Project>> GetListProjects() 
+        public async Task<List<Project>> GetListProjectsAsync() 
         {
             return await _projectRepository.GetListAsync();
         }

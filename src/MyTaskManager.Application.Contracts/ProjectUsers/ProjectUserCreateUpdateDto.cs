@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MyTaskManager.ProjectUsers
 {
-    public class ProjectUserCreateDto
+    public class ProjectUserCreateUpdateDto
     {
         public Guid ProjectId { get; set; }
         public Guid UserId { get; set; }

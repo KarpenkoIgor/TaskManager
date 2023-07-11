@@ -6,10 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Volo.Abp.Domain.Entities.Auditing;
 using Volo.Abp;
+using MyTaskManager.Comments;
 
-namespace MyTaskManager.Tasks
+namespace MyTaskManager.ProjectTasks
 {
-    public class Task : AuditedAggregateRoot<Guid>
+    public class ProjectTask : AuditedAggregateRoot<Guid>
     {
         public string Name { get; set; }
         public string Description { get; set; }
@@ -17,7 +18,7 @@ namespace MyTaskManager.Tasks
         public DateTime DeadLine { get; set; }
         public bool IsClosed { get; set; }
         public ICollection<Comment> Comments { get; set; }
-        public Task(
+        public ProjectTask(
             Guid id,
             string name,
             Guid projectUserId,
@@ -32,6 +33,6 @@ namespace MyTaskManager.Tasks
             IsClosed = false;
             Comments = new Collection<Comment>();
         }
-        private Task() { }
+        private ProjectTask() { }
     }
 }

@@ -33,7 +33,7 @@ namespace MyTaskManager.Projects
 
         public virtual async Task<PagedResultDto<ProjectDto>> GetListAsync(PagedAndSortedResultRequestDto input)
         {
-            var project = await _projectManager.GetListProjects();
+            var project = await _projectManager.GetListProjectsAsync();
             var count = await _projectManager.GetCountAsync();
             return new PagedResultDto<ProjectDto>(
                 count, 

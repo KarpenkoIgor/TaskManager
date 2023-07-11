@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Volo.Abp.Domain.Entities;
 
-namespace MyTaskManager.Tasks
+namespace MyTaskManager.Comments
 {
     public class Comment : Entity<Guid>
     {

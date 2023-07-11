@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MyTaskManager.Comments;
 using MyTaskManager.Projects;
+using MyTaskManager.ProjectTasks;
 using MyTaskManager.ProjectUsers;
-using MyTaskManager.Tasks;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.Data;
@@ -30,7 +31,7 @@ public class MyTaskManagerDbContext :
     /* Add DbSet properties for your Aggregate Roots / Entities here. */
     public DbSet<Project> Projects { get; set; }
     public DbSet<Comment> Comments { get; set; }
-    public DbSet<Task> Tasks { get; set; }
+    public DbSet<ProjectTask> Tasks { get; set; }
     public DbSet<ProjectUser>  ProjectUsers { get; set; }
 
     #region Entities from the modules
@@ -88,9 +89,9 @@ public class MyTaskManagerDbContext :
             b.ToTable(MyTaskManagerConsts.DbTablePrefix + "ProjectUsers", MyTaskManagerConsts.DbSchema);
             b.ConfigureByConvention();
         });
-        builder.Entity<Task>(b =>
+        builder.Entity<ProjectTask>(b =>
         {
-            b.ToTable(MyTaskManagerConsts.DbTablePrefix + "Tasks", MyTaskManagerConsts.DbSchema);
+            b.ToTable(MyTaskManagerConsts.DbTablePrefix + "ProjectTasks", MyTaskManagerConsts.DbSchema);
             b.ConfigureByConvention();
 
             b.Property(t => t.Name)
@@ -121,11 +122,6 @@ public class MyTaskManagerDbContext :
 
             b.Property(c => c.UserId)
                 .IsRequired();
-/*
-            b.HasOne<Task>()
-                .WithMany()
-                .HasForeignKey(c => c.TaskId)
-                .OnDelete(DeleteBehavior.Cascade);*/
         });
 
         builder.Entity<Project>(b =>
@@ -144,14 +140,5 @@ public class MyTaskManagerDbContext :
             b.Property(p => p.DeadLine)
                 .IsRequired();
         });
-
-        /* Configure your own tables/entities inside here */
-
-        //builder.Entity<YourEntity>(b =>
-        //{
-        //    b.ToTable(MyTaskManagerConsts.DbTablePrefix + "YourEntities", MyTaskManagerConsts.DbSchema);
-        //    b.ConfigureByConvention(); //auto configure for the base class props
-        //    //...
-        //});
     }
 }
