@@ -46,6 +46,20 @@ public class MyTaskManagerMenuContributor : IMenuContributor
         administration.SetSubItemOrder(IdentityMenuNames.GroupName, 2);
         administration.SetSubItemOrder(SettingManagementMenuNames.GroupName, 3);
 
+        context.Menu.AddItem(
+            new ApplicationMenuItem(
+                "MyTaskManager",
+                l["Menu:MyTaskManager"],
+                icon: "fas fa-shopping-cart"
+                    ).AddItem(
+                new ApplicationMenuItem(
+                    "MyTaskManager.Projects",
+                    l["Menu:Projects"],
+                    url: "/Projects"
+                )
+    )
+);
+
         return Task.CompletedTask;
     }
 }

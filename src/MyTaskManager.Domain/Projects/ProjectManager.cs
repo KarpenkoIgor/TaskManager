@@ -39,7 +39,18 @@ namespace MyTaskManager.Projects
         {
             return await _projectRepository.GetListAsync();
         }
-        
+        public async Task<Project> GetAsync(Guid id)
+        {
+            return await _projectRepository.GetAsync(id);
+        }
+        public async Task DeleteAsync(Guid id)
+        {
+            await _projectRepository.DeleteAsync(id);
+        }
+        public async Task UpdateAsync(Project project)
+        {
+            await _projectRepository.UpdateAsync(project);
+        }
         public async Task<long> GetCountAsync()
         {
             return await _projectRepository.GetCountAsync();

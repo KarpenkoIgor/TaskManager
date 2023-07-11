@@ -17,7 +17,7 @@ public class MyTaskManagerDbContextFactory : IDesignTimeDbContextFactory<MyTaskM
         var configuration = BuildConfiguration();
 
         var builder = new DbContextOptionsBuilder<MyTaskManagerDbContext>()
-            .UseSqlite(configuration.GetConnectionString("Default"));
+            .UseNpgsql(configuration.GetConnectionString("Default"));
 
         return new MyTaskManagerDbContext(builder.Options);
     }

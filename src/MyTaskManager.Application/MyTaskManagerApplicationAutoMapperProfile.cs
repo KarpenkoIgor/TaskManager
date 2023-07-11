@@ -14,6 +14,8 @@ public class MyTaskManagerApplicationAutoMapperProfile : Profile
          * into multiple profile classes for a better organization. */
 
         CreateMap<Project, ProjectDto>();
+        CreateMap<ProjectCreateDto, Project>();
+        CreateMap<ProjectUpdateDto, Project>();
         CreateMap<ProjectUser, ProjectUserDto>();
 
     }

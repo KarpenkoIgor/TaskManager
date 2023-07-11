@@ -1,0 +1,18 @@
+﻿@page
+@using MyTaskManager.Web.Pages.Projects
+@using Microsoft.Extensions.Localization
+@using MyTaskManager.Localization
+@model IndexModel
+@inject IStringLocalizer<MyTaskManagerResource> L
+@section scripts
+    {
+    <abp-script src="/Pages/Projects/Index.cshtml.js" />
+}
+<abp-card>
+    <abp-card-header>
+        <h2>@L["Menu:Projects"]</h2>
+    </abp-card-header>
+    <abp-card-body>
+        <abp-table id="ProjectsTable" striped-rows="true" />
+    </abp-card-body>
+</abp-card>

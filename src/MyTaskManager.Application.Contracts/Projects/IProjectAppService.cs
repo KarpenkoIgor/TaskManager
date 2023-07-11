@@ -11,5 +11,9 @@ namespace MyTaskManager.Projects
     {
         Task<ProjectDto> CreateAsync(ProjectCreateDto input);
         Task<PagedResultDto<ProjectDto>> GetListAsync(PagedAndSortedResultRequestDto input);
+        Task<ProjectDto> GetAsync(Guid projectId);
+        Task UpdateAsync(Guid id , ProjectUpdateDto input);
+        Task DeleteAsync(Guid id);
+
     }
 }

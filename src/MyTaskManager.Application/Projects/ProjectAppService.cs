@@ -41,5 +41,22 @@ namespace MyTaskManager.Projects
                 ); 
         }
 
+        public virtual async Task<ProjectDto> GetAsync(Guid id)
+        {
+            return ObjectMapper.Map<Project, ProjectDto>(
+                    await _projectManager.GetAsync(id)
+                );
+        }
+
+        public virtual async Task UpdateAsync(Guid id, ProjectUpdateDto input)
+        {
+            var project = await _projectManager.GetAsync(id);
+            ObjectMapper.Map(input, project); 
+        }
+
+        public virtual async Task DeleteAsync(Guid id)
+        {
+            await _projectManager.DeleteAsync(id);
+        }
     }
 }
